@@ -1,0 +1,12 @@
+.grid {
+  display: grid;
+  grid-template-columns: 24px auto 24px;
+
+  @media(min-width: 1024px) {
+    grid-template-columns: auto 1024px auto;
+  }
+}
+
+.grid-item {
+  grid-column: 2;
+}

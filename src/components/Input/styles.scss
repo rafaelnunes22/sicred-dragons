@@ -1,0 +1,19 @@
+.input {
+  border: none;
+  border-bottom: 1px solid var(--blue);
+  
+  &:focus{
+    outline: none;
+  }
+  
+  color: var(--blue);
+  background: transparent;
+
+  padding: 8px 0;
+  width: 100%;
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--light-blue);
+    opacity: 1; /* Firefox */
+  }
+}

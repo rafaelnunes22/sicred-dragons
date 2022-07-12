@@ -1,0 +1,12 @@
+.card {
+  width: 600px;
+  height: 700px;
+
+  border-radius: 20px;
+
+  background-color: var(--white);
+
+  z-index: 20;
+
+  box-shadow: 0 1px 10px var(--gray) ;
+}

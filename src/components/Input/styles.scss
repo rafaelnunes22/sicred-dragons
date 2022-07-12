@@ -16,4 +16,8 @@
     color: var(--light-blue);
     opacity: 1; /* Firefox */
   }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: var(--light-blue);
+  }
 }

@@ -1,0 +1,40 @@
+.button {
+  width: 100%;
+  padding: 20px;
+  border-radius: 14px;
+
+  font-size: 32px;
+  cursor: pointer;
+
+  transition: 200ms;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.default {
+  @extend .button;
+
+  background-color: var(--blue);
+  color: var(--white);
+
+  &:hover {
+    color: var(--blue);
+    background-color: var(--white);
+    border: 1px solid var(--blue);
+  }
+
+}
+.outlined {
+  @extend .button;
+  background-color: var(--white);
+  color: var(--blue);
+
+  border: 1px solid var(--blue);
+
+  &:hover {
+    color: var(--white);
+    background-color: var(--blue);
+  }
+}

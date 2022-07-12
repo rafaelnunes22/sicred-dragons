@@ -2,19 +2,20 @@
   --white: #FFFFFF;
   --blue: #0AA3C6;
   --light-blue: #98D4E1;
+  --background-blue: rgba(130, 228, 250, 1);
+  --background-light-blue: rgba(183, 251, 255, 0.3214)
 }
 
 
 body {
+  background-image: linear-gradient(to bottom, var(--background-blue), var(--background-light-blue) , var(--background-blue));
+  height: 100vh;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body, input, button, textarea {
+  font: 600 18px Roboto, sans-serif;
 }
+

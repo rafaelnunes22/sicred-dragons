@@ -11,9 +11,10 @@ import {ReactComponent as TrashIcon} from "../../icons/trash.svg";
 
 
 import "./styles.scss"
+import { Row } from "../../components/Row";
 
 export function Login() {
   return (
-    <Grid><Button><TrashIcon height={32}/></Button></Grid>
+    <Grid><Row title="dragon name" onEditClick={() => console.log("editar")} onDeleteClick={() => console.log("deletar")} onClick={() => console.log("detalhes")}></Row></Grid>
   )
 }

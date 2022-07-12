@@ -2,8 +2,11 @@
 import { ButtonHTMLAttributes } from "react";
 import "./styles.scss";
 
-type Props = { variant?: "default" | "outlined" } & ButtonHTMLAttributes<HTMLButtonElement> ;
+type Props = { 
+  variant?: "default" | "outlined";
+  size?: "md" | "lg";
+} & ButtonHTMLAttributes<HTMLButtonElement> ;
 
-export function Button({ variant="default", ...props}: Props) {
-  return <button  {...props} className={variant}/>
+export function Button({ variant="default", size="md", className, ...props}: Props) {
+  return <button  {...props} className={`${variant} ${size} ${className}`}/>
 }

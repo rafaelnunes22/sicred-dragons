@@ -6,12 +6,10 @@ type Props = {
   children: ReactElement | ReactElement[];
 };
 
-function Grid({ children }: Props) {
+export function Grid({ children }: Props) {
   return <div role="grid" className="grid" >
     <div className="grid-item">
       {children}
     </div>
   </div>
 }
-
-export { Grid };

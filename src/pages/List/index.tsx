@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./styles.scss";
 
 import { Card } from "../../components/Card";
@@ -6,7 +6,7 @@ import { Grid } from "../../components/Grid";
 import { Row } from "../../components/Row";
 import { Heading } from "../../components/Heading";
 
-import { getDragons } from "../../api";
+import { deleteDragon, getDragons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 
@@ -15,7 +15,7 @@ export function List() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const updateList = useCallback(() => {
     getDragons().then((res) => {
       setDragons(
         res.sort((a: Dragon, b: Dragon) =>
@@ -23,6 +23,10 @@ export function List() {
         )
       );
     });
+  }, []);
+
+  useEffect(() => {
+    updateList();
   }, []);
 
   return (
@@ -46,8 +50,12 @@ export function List() {
                   onClick={() =>
                     navigate("/details", { state: { selectedDragon: dragon } })
                   }
-                  onDeleteClick={() => {}}
-                  onEditClick={() => {}}
+                  onDeleteClick={() =>
+                    deleteDragon(dragon.id!).then(() => updateList())
+                  }
+                  onEditClick={() => {
+                    navigate("/form", { state: { dragonId: dragon.id } });
+                  }}
                   style={{ marginBottom: 14 }}
                 />
               );

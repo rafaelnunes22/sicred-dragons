@@ -1,3 +1,4 @@
+@import "../../global.scss";
 .button {
   display: flex;
   align-items: center;
@@ -17,33 +18,33 @@
 .default {
   @extend .button;
 
-  background-color: var(--blue);
-  color: var(--white);
-  border: 1px solid var(--blue);
+  background-color: $blue;
+  color: $white;
+  border: 1px solid $blue;
 
   &:hover {
-    color: var(--blue);
-    background-color: var(--white);
+    color: $blue;
+    background-color: $white;
   }
 }
 
 .outlined {
   @extend .button;
-  background-color: var(--white);
-  color: var(--blue);
+  background-color: $white;
+  color: $blue;
 
-  border: 1px solid var(--blue);
+  border: 1px solid $blue;
 
   &:hover {
-    color: var(--white);
-    background-color: var(--blue);
+    color: $white;
+    background-color: $blue;
   }
 }
 
 .transparent {
   @extend .button;
   background-color: transparent;
-  color: var(--blue);
+  color: $blue;
   &:hover {
     opacity: 0.9;
   }

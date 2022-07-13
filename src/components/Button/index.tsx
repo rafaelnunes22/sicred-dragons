@@ -9,7 +9,7 @@ type Props = {
 export function Button({
   variant = "default",
   size = "md",
-  className,
+  className = "",
   ...props
 }: Props) {
   return <button {...props} className={`${variant} ${size} ${className}`} />;

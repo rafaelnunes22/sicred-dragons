@@ -9,9 +9,9 @@ type UserContextType = {
 } | null;
 
 type Dragon = {
-  createdAt: Date;
-  histories: Array;
-  id: string;
+  createdAt?: Date;
+  histories?: Array;
+  id?: string;
   name: string;
   type: string;
 };

@@ -14,3 +14,50 @@ export async function getDragons() {
   //   body: JSON.stringify()
   // });
 }
+
+export async function createDragon(data: Dragon) {
+  try {
+    const response = await fetch(BASE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateDragon(data: Dragon, id: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getDragonById(id: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/${id}`);
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function deleteDragon(id: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}

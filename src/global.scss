@@ -1,12 +1,7 @@
-:root {
-  --white: #ffffff;
-  --gray: #a1a1a1;
-  --blue: #0aa3c6;
-  --light-blue: #98d4e1;
-  --background-blue: rgba(130, 228, 250, 1);
-  --background-light-blue: rgba(183, 251, 255, 0.3214);
-}
 $blue: #0aa3c6;
+$light-blue: #98d4e1;
+$background-blue: rgba(130, 228, 250, 1);
+$background-light-blue: rgba(183, 251, 255, 0.3214);
 $red: #d94141;
 $gray: #a1a1a1;
 $white: #ffffff;
@@ -14,11 +9,11 @@ $white: #ffffff;
 body {
   background-image: linear-gradient(
     to bottom,
-    var(--background-blue),
-    var(--background-light-blue),
-    var(--background-blue)
+    $background-blue,
+    $background-light-blue,
+    $background-blue
   );
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

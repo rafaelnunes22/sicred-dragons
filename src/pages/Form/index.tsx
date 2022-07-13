@@ -9,10 +9,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { createDragon, getDragonById, updateDragon } from "../../api";
 
-type State = {
-  dragonId?: string;
-};
-
 export function Form() {
   const navigate = useNavigate();
   const [name, setName] = useState<string>("");

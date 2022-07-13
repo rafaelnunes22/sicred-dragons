@@ -15,3 +15,7 @@ type Dragon = {
   name: string;
   type: string;
 };
+
+type State = {
+  dragonId?: string;
+};

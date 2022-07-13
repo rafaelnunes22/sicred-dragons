@@ -8,10 +8,6 @@ import { ReactComponent as CloseIcon } from "../../icons/close.svg";
 import { Button } from "../../components/Button";
 import { getDragonById } from "../../api";
 
-type State = {
-  dragonId?: string;
-};
-
 export function Details() {
   const navigate = useNavigate();
   const [dragon, setDragon] = useState<Dragon>({

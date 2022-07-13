@@ -10,7 +10,7 @@ type Props = {
 } & HTMLAttributes<HTMLButtonElement>;
 
 export function Row({
-  className,
+  className = "",
   title,
   onEditClick,
   onDeleteClick,

@@ -3,6 +3,6 @@ import "./styles.scss";
 
 type Props = HTMLAttributes<HTMLDivElement>;
 
-export function Card({className, ...props}: Props) {
-  return <div className={`card ${className}` } {...props}/>
+export function Card({ className = "", ...props }: Props) {
+  return <div className={`card ${className}`} {...props} />;
 }

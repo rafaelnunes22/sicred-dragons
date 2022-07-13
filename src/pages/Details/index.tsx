@@ -6,20 +6,28 @@ import { Grid } from "../../components/Grid";
 import { Heading } from "../../components/Heading";
 import { ReactComponent as CloseIcon } from "../../icons/close.svg";
 import { Button } from "../../components/Button";
+import { getDragonById } from "../../api";
 
 type State = {
-  selectedDragon?: Dragon;
+  dragonId?: string;
 };
 
 export function Details() {
   const navigate = useNavigate();
-  const [selectedDragon, setSelectedDragon] = useState<Dragon | null>(null);
+  const [dragon, setDragon] = useState<Dragon>({
+    name: "",
+    type: "",
+    createdAt: "",
+  });
   const { state } = useLocation();
 
   useEffect(() => {
     const typedState = state as State;
-    if (typedState?.selectedDragon) {
-      setSelectedDragon(typedState.selectedDragon);
+    if (typedState?.dragonId) {
+      getDragonById(typedState.dragonId).then((res: Dragon) => {
+        let date = new Date(res.createdAt as Date);
+        setDragon({ ...res, createdAt: date.toLocaleDateString("pt-BR") });
+      });
     } else {
       navigate("/list");
     }
@@ -38,13 +46,11 @@ export function Details() {
           </Button>
           <Heading className="title">Detalhes do dragão</Heading>
           <h2 className="label">Data de criação:</h2>
-          <span className="information">
-            {String(selectedDragon?.createdAt)}
-          </span>
+          <span className="information">{String(dragon.createdAt)}</span>
           <h2 className="label">Nome:</h2>
-          <span className="information">{selectedDragon?.name}</span>
+          <span className="information">{dragon.name}</span>
           <h2 className="label">Tipo:</h2>
-          <span className="information">{selectedDragon?.type}</span>
+          <span className="information">{dragon.type}</span>
         </Card>
       </div>
     </Grid>

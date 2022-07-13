@@ -48,7 +48,7 @@ export function List() {
                   key={dragon.id}
                   title={dragon.name}
                   onClick={() =>
-                    navigate("/details", { state: { selectedDragon: dragon } })
+                    navigate("/details", { state: { dragonId: dragon.id } })
                   }
                   onDeleteClick={() =>
                     deleteDragon(dragon.id!).then(() => updateList())

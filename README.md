@@ -1,6 +1,6 @@
 ## User to access the app
 
-username: admin
+username: admin \
 password: 1234
 
 ### `npm start`

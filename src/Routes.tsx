@@ -1,40 +1,36 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { Login } from "./pages/Login";
 import { Details } from "./pages/Details";
 import { Form } from "./pages/Form";
 import { List } from "./pages/List";
 
-import { BrowserRouter, Routes as ReactRouterRoutes, Route, RouteProps, Navigate } from "react-router-dom";
-
-type Props = {
-  children: ReactElement;
-} & RouteProps;
-
-function PrivateRoute({ children }: Props) {
-  return true ? children : <Navigate to="/" />;
-}
+import {
+  BrowserRouter,
+  Routes as ReactRouterRoutes,
+  Route,
+  RouteProps,
+  Navigate,
+} from "react-router-dom";
+import { UserContext } from "./contexts/UserContext";
 
 export function Routes() {
+  const [user, setUser] = useState<User>(null);
+
   return (
-    <BrowserRouter>
-      <ReactRouterRoutes>
-        <Route path="/*" element={<Login />} />
-        <Route path="/list" element={
-          <PrivateRoute>
-            <List />
-          </PrivateRoute>}
-        />
-        <Route path="/details" element={
-          <PrivateRoute>
-            <Details />
-          </PrivateRoute>}
-        />
-        <Route path="/form" element={
-          <PrivateRoute>
-            <Form />
-          </PrivateRoute>}
-        />
-      </ReactRouterRoutes>
-    </BrowserRouter>
+    <UserContext.Provider value={{ user, setUser }}>
+      <BrowserRouter>
+        <ReactRouterRoutes>
+          {user?.token ? (
+            <>
+              <Route path="/*" element={<List />} />
+              <Route path="/details" element={<Details />} />
+              <Route path="/Form" element={<Form />} />
+            </>
+          ) : (
+            <Route path="/*" element={<Login />} />
+          )}
+        </ReactRouterRoutes>
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }

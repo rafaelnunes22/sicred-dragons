@@ -10,7 +10,7 @@
   align-items: center;
 
   height: 60px;
-  width: 100vh;
+  width: 100%;
 
   background-color: transparent;
   border-bottom: 1px solid $blue;
@@ -27,6 +27,8 @@
     color: $blue;
     font-size: 28px;
     font-weight: 600;
+
+    text-align: start;
   }
 
   .button-container {
@@ -34,4 +36,18 @@
     flex-direction: row;
   }
 
+  .icon {
+    height: 28px;
+    padding: 0 10px;
+  }
+
+  @media (max-width: 1024px) {
+    .name {
+      font-size: 18px;
+    }
+
+    .icon {
+      height: 22px;
+    }
+  }
 }

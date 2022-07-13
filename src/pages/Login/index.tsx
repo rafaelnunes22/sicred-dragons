@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import "./styles.scss";
 import { Button } from "../../components/Button";
 import { Grid } from "../../components/Grid";
@@ -16,10 +16,6 @@ export function Login() {
   const [password, setPassword] = useState<string | null>("");
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    console.log(userState?.user, "eae");
-  }, [userState?.user]);
-
   const login = useCallback(() => {
     if (username === "admin" && password === "1234") {
       setError(null);
@@ -33,8 +29,7 @@ export function Login() {
     <Grid>
       <div className="container">
         <Card className="login-card">
-          <Heading>Faça seu login</Heading>
-          <span></span>
+          <Heading className="title">Faça seu login</Heading>
           <Input
             placeholder="Digite seu usuário"
             className="login-input"

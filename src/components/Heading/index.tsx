@@ -3,6 +3,6 @@ import "./styles.scss";
 
 type Props = HTMLAttributes<HTMLHeadingElement>;
 
-export function Heading(props: Props) {
-  return <h1 className="heading" {...props}/>
+export function Heading({ className = "", ...props }: Props) {
+  return <h1 className={`heading ${className}`} {...props} />;
 }

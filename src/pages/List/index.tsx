@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import "./styles.scss";
+import { ReactComponent as LogoutIcon } from "../../icons/logout.svg";
 
 import { Card } from "../../components/Card";
 import { Grid } from "../../components/Grid";
@@ -9,9 +10,12 @@ import { Heading } from "../../components/Heading";
 import { deleteDragon, getDragons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
+import { UserContext } from "../../contexts/UserContext";
 
 export function List() {
   const [dragons, setDragons] = useState<Dragon[] | null>(null);
+
+  const userState = useContext<UserContextType>(UserContext);
 
   const navigate = useNavigate();
 
@@ -31,6 +35,15 @@ export function List() {
 
   return (
     <Grid>
+      <div className="logout-container">
+        <Button
+          className="logout-button"
+          onClick={() => userState?.setUser(null)}
+        >
+          <LogoutIcon className="icon" />
+          Sair
+        </Button>
+      </div>
       <Card className="list-card">
         <div className="header">
           <Heading>Lista de dragões</Heading>

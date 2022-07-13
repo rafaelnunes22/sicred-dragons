@@ -1,4 +1,4 @@
-## User to access the app
+## `user to access the app`
 
 username: admin \
 password: 1234

@@ -8,9 +8,11 @@ import { Card } from "../../components/Card";
 
 import "./styles.scss";
 import { UserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const userState = useContext<UserContextType>(UserContext);
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState<string | null>("");
   const [password, setPassword] = useState<string | null>("");
@@ -20,6 +22,7 @@ export function Login() {
     if (username === "admin" && password === "1234") {
       setError(null);
       userState?.setUser({ username: username, token: "valid-token" });
+      navigate("/list");
     } else {
       setError("Usuário ou senha incorretos");
     }

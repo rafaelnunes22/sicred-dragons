@@ -10,6 +10,14 @@
 
   transition: 200ms;
 
+  font-weight: 500;
+  font-size: 28px;
+  padding: 8px 10px;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+
   &:active {
     opacity: 0.8;
   }
@@ -47,24 +55,5 @@
   color: $blue;
   &:hover {
     opacity: 0.9;
-  }
-}
-
-.md {
-  font-weight: 500;
-  font-size: 28px;
-  padding: 8px 10px;
-
-  @media (max-width: 1024px) {
-    font-size: 18px;
-  }
-}
-
-.lg {
-  padding: 20px;
-  font-size: 32px;
-
-  @media (max-width: 1024px) {
-    font-size: 28px;
   }
 }

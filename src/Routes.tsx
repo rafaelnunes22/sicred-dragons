@@ -8,8 +8,6 @@ import {
   BrowserRouter,
   Routes as ReactRouterRoutes,
   Route,
-  RouteProps,
-  Navigate,
 } from "react-router-dom";
 import { UserContext } from "./contexts/UserContext";
 
@@ -22,7 +20,7 @@ export function Routes() {
         <ReactRouterRoutes>
           {user?.token ? (
             <>
-              <Route path="/*" element={<List />} />
+              <Route path="/list" element={<List />} />
               <Route path="/details" element={<Details />} />
               <Route path="/Form" element={<Form />} />
             </>

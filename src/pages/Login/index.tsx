@@ -36,6 +36,7 @@ export function Login() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
+            type="password"
             placeholder="Digite sua senha"
             className="login-input"
             onChange={(e) => setPassword(e.target.value)}

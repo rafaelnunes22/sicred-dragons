@@ -1,0 +1,81 @@
+@import "../../global.scss";
+.container {
+  height: 100vh;
+  width: 100vh;
+
+  .details-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+
+    padding: 60px 80px;
+
+    width: 350px;
+    height: 400px;
+
+    .title {
+      margin-bottom: 25px;
+    }
+
+    .label {
+      color: $blue;
+
+      font-weight: 500;
+      font-size: 30px;
+
+      margin: 0;
+    }
+
+    .information {
+      color: $blue;
+
+      font-weight: 300;
+      font-size: 28px;
+
+      padding: 20px 0;
+    }
+
+    .icon-button {
+      position: absolute;
+
+      width: auto;
+
+      top: 0;
+      right: 0;
+
+      .icon {
+        width: 40px;
+        height: 40px;
+
+        color: $blue;
+        cursor: pointer;
+
+        top: 20px;
+        right: 20px;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+
+    .details-card {
+      width: 100%;
+      padding: 20px;
+
+      .title {
+        margin-top: 20px;
+      }
+
+      .label {
+        font-size: 24px;
+      }
+
+      .information {
+        font-size: 20px;
+      }
+    }
+  }
+}

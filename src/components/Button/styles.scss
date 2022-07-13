@@ -40,6 +40,15 @@
   }
 }
 
+.transparent {
+  @extend .button;
+  background-color: transparent;
+  color: var(--blue);
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
 .md {
   font-weight: 500;
   font-size: 28px;

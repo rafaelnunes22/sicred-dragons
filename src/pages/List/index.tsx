@@ -8,6 +8,7 @@ import { Heading } from "../../components/Heading";
 
 import { getDragons } from "../../api";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/Button";
 
 export function List() {
   const [dragons, setDragons] = useState<Dragon[] | null>(null);
@@ -16,14 +17,26 @@ export function List() {
 
   useEffect(() => {
     getDragons().then((res) => {
-      setDragons(res);
+      setDragons(
+        res.sort((a: Dragon, b: Dragon) =>
+          a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+        )
+      );
     });
   }, []);
 
   return (
     <Grid>
       <Card className="list-card">
-        <Heading className="title">Lista de dragões</Heading>
+        <div className="header">
+          <Heading>Lista de dragões</Heading>
+          <Button
+            className="add-dragon-button"
+            onClick={() => navigate("/form")}
+          >
+            Cadastrar
+          </Button>
+        </div>
         {dragons
           ? dragons.map((dragon) => {
               return (

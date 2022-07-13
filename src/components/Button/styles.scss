@@ -19,11 +19,11 @@
 
   background-color: var(--blue);
   color: var(--white);
+  border: 1px solid var(--blue);
 
   &:hover {
     color: var(--blue);
     background-color: var(--white);
-    border: 1px solid var(--blue);
   }
 }
 

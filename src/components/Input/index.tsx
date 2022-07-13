@@ -4,6 +4,6 @@ import "./styles.scss";
 
 type Props = InputHTMLAttributes<HTMLInputElement>;
 
-export function Input(props: Props) {
-  return <input {...props} className="input"/>
+export function Input({className, ...props}: Props) {
+  return <input {...props} className={`input ${className}`}/>
 }

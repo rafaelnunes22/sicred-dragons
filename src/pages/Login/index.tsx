@@ -1,20 +1,24 @@
 import React from "react";
+import "./styles.scss";
 import { Button } from "../../components/Button";
 import { Grid } from "../../components/Grid";
 import { Heading } from "../../components/Heading";
 import { Input } from "../../components/Input";
 import { Card } from "../../components/Card";
 
-import {ReactComponent as TrashIcon} from "../../icons/trash.svg";
-
-
-
-
 import "./styles.scss"
-import { Row } from "../../components/Row";
 
 export function Login() {
   return (
-    <Grid><Row title="dragon name" onEditClick={() => console.log("editar")} onDeleteClick={() => console.log("deletar")} onClick={() => console.log("detalhes")}></Row></Grid>
+    <Grid>
+      <div className="container">
+        <Card className="login-card">
+          <Heading>Faça seu login</Heading>
+          <Input placeholder="Digite seu usuário" className="login-input"/>
+          <Input placeholder="Digite sua senha" className="login-input"/>
+          <Button className="login-button">Entrar</Button>
+        </Card>
+      </div>
+    </Grid>
   )
 }

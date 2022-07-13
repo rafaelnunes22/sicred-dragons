@@ -1,5 +1,12 @@
+@import "../../global.scss";
+
 .heading {
   font-size: 36px;
   font-weight: 700;
-  color: var(--blue);
+  color: $blue;
+
+  @media(max-width: 1024px) {
+    font-size: 32px;
+  }
 }
+

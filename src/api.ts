@@ -7,12 +7,6 @@ export async function getDragons() {
   } catch (error) {
     console.error(error);
   }
-
-  // const response = await fetch(BASE_URL, {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify()
-  // });
 }
 
 export async function createDragon(data: Dragon) {

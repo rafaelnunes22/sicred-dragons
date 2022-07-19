@@ -36,7 +36,7 @@ export function Details() {
 
       internalGetDragonById(typedState.dragonId);
     }
-  }, []);
+  }, [navigate, state]);
 
   return (
     <Grid>

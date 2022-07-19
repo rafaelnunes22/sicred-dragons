@@ -27,7 +27,7 @@ export function Login() {
       userState?.setUser(response.data!);
       navigate("/list");
     }
-  }, [username, password]);
+  }, [username, password, navigate, userState]);
 
   return (
     <Grid>

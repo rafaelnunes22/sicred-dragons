@@ -35,11 +35,11 @@ export function List() {
         )
       );
     }
-  }, [getDragons, setDragons]);
+  }, [setDragons]);
 
   useEffect(() => {
     updateList();
-  }, []);
+  }, [updateList]);
 
   const internalDeleteDragon = useCallback(
     async (id: string) => {
@@ -52,7 +52,7 @@ export function List() {
         updateList();
       }
     },
-    [deleteDragon, updateList, navigate]
+    [updateList, navigate]
   );
 
   return (

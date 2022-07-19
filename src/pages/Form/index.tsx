@@ -36,7 +36,7 @@ export function Form() {
 
       internalGetDragonById(typedState.dragonId);
     }
-  }, []);
+  }, [navigate, state]);
 
   const create = useCallback(async () => {
     const response = await createDragon({ name, type });
@@ -46,7 +46,7 @@ export function Form() {
     } else {
       generateTimeoutMessage(response.message!, setMessage);
     }
-  }, [name, type, createDragon, generateTimeoutMessage, setMessage]);
+  }, [name, type, setMessage]);
 
   const update = useCallback(async () => {
     const response = await updateDragon({ name, type }, dragonId as string);
@@ -56,7 +56,7 @@ export function Form() {
     } else {
       generateTimeoutMessage(response.message!, setMessage);
     }
-  }, [name, type, dragonId, updateDragon, generateTimeoutMessage, setMessage]);
+  }, [name, type, dragonId, setMessage]);
 
   return (
     <Grid>

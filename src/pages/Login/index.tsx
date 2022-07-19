@@ -6,9 +6,10 @@ import { Heading } from "../../components/Heading";
 import { Input } from "../../components/Input";
 import { Card } from "../../components/Card";
 
-import "./styles.scss";
+import { generateTimeoutMessage } from "../../utils/utils";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../api";
 
 export function Login() {
   const userState = useContext<UserContextType>(UserContext);
@@ -16,15 +17,15 @@ export function Login() {
 
   const [username, setUsername] = useState<string | null>("");
   const [password, setPassword] = useState<string | null>("");
-  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-  const login = useCallback(() => {
-    if (username === "admin" && password === "1234") {
-      setError(null);
-      userState?.setUser({ username: username, token: "valid-token" });
-      navigate("/list");
+  const internalLogin = useCallback(async () => {
+    const response = await login(username!, password!);
+    if (response.error) {
+      generateTimeoutMessage(response.error, setMessage);
     } else {
-      setError("Usuário ou senha incorretos");
+      userState?.setUser(response.data!);
+      navigate("/list");
     }
   }, [username, password]);
 
@@ -47,13 +48,13 @@ export function Login() {
           <Button
             className="login-button"
             onClick={() => {
-              login();
+              internalLogin();
             }}
           >
             Entrar
           </Button>
 
-          {error ? <span className="error">{error}</span> : null}
+          {message ? <span className="message">{message}</span> : null}
         </Card>
       </div>
     </Grid>

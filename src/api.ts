@@ -1,6 +1,20 @@
 const BASE_URL = "http://5c4b2a47aa8ee500142b4887.mockapi.io/api/v1/dragon";
 
+enum UserAuthParams {
+  Username = "admin",
+  Password = "1234",
+  Token = "Token",
+}
+
+enum Status {
+  "Code200" = 200,
+  "Code201" = 201,
+  "Code401" = 401,
+}
+
 enum Messages {
+  LoginSuccess = "Login efetuado com sucesso!",
+  LoginError = "Usuário ou senha inválidos",
   CreateSuccess = "Dragão cadastrado com sucesso!",
   CreateError = "Erro ao cadastrar dragão!",
   UpdateSuccess = "Dragão editado com sucesso!",
@@ -13,11 +27,40 @@ enum Messages {
   DeleteError = "Erro ao excluir dragão!",
 }
 
+export const login = async (username: string, password: string) => {
+  try {
+    const response = await new Promise<{ data?: User; status: number }>(
+      (resolve) =>
+        setTimeout(() => {
+          if (
+            username === UserAuthParams.Username &&
+            password === UserAuthParams.Password
+          ) {
+            resolve({
+              data: { username, token: UserAuthParams.Token },
+              status: Status.Code201,
+            });
+          } else {
+            resolve({ status: Status.Code401 });
+          }
+        }, 1000)
+    );
+    if (response.status === Status.Code201) {
+      return { data: response.data, message: Messages.LoginSuccess };
+    } else {
+      throw new Error(Messages.LoginError);
+    }
+  } catch (err) {
+    const error = err as Error;
+    return { error: error.message };
+  }
+};
+
 export async function getDragons() {
   try {
     const response = await fetch(BASE_URL);
 
-    if (response.status === 200) {
+    if (response.status === Status.Code200) {
       const data = await response.json();
       return { data, message: Messages.GetAllSuccess };
     } else {
@@ -37,7 +80,7 @@ export async function createDragon(data: Dragon) {
       body: JSON.stringify(data),
     });
 
-    if (response.status === 201) {
+    if (response.status === Status.Code201) {
       const data = await response.json();
       return { data, message: Messages.CreateSuccess };
     } else {
@@ -57,7 +100,7 @@ export async function updateDragon(data: Dragon, id: string) {
       body: JSON.stringify(data),
     });
 
-    if (response.status === 200) {
+    if (response.status === Status.Code200) {
       const data = await response.json();
       return { data, message: Messages.UpdateSuccess };
     } else {
@@ -73,7 +116,7 @@ export async function getDragonById(id: string) {
   try {
     const response = await fetch(`${BASE_URL}/${id}`);
 
-    if (response.status === 200) {
+    if (response.status === Status.Code200) {
       const data = await response.json();
       return { data, message: Messages.GetByIdSuccess };
     } else {
@@ -92,7 +135,7 @@ export async function deleteDragon(id: string) {
       headers: { "Content-Type": "application/json" },
     });
 
-    if (response.status === 200) {
+    if (response.status === Status.Code200) {
       const data = await response.json();
       return { data, message: Messages.DeleteSuccess };
     } else {

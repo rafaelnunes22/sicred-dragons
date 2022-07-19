@@ -15,12 +15,12 @@ export function Login() {
   const userState = useContext<UserContextType>(UserContext);
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState<string | null>("");
-  const [password, setPassword] = useState<string | null>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState<string | null>(null);
 
   const internalLogin = useCallback(async () => {
-    const response = await login(username!, password!);
+    const response = await login(username, password!);
     if (response.error) {
       generateTimeoutMessage(response.error, setMessage);
     } else {
@@ -34,25 +34,31 @@ export function Login() {
       <div className="container">
         <Card className="login-card">
           <Heading className="title">Faça seu login</Heading>
-          <Input
-            placeholder="Digite seu usuário"
-            className="login-input"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Digite sua senha"
-            className="login-input"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button
-            className="login-button"
-            onClick={() => {
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
               internalLogin();
             }}
           >
-            Entrar
-          </Button>
+            <Input
+              autoComplete="username"
+              placeholder="Digite seu usuário"
+              className="login-input"
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+            />
+            <Input
+              autoComplete="current-password"
+              type="password"
+              placeholder="Digite sua senha"
+              className="login-input"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            <Button type="submit" className="login-button">
+              Entrar
+            </Button>
+          </form>
 
           {message ? <span className="message">{message}</span> : null}
         </Card>

@@ -50,6 +50,7 @@ export function List() {
         navigate("/list");
       } else {
         updateList();
+        alert(response.message);
       }
     },
     [updateList, navigate]

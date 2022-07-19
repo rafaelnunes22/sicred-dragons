@@ -19,19 +19,41 @@ export function List() {
 
   const navigate = useNavigate();
 
-  const updateList = useCallback(() => {
-    getDragons().then((res) => {
+  const updateList = useCallback(async () => {
+    const response = await getDragons();
+
+    if (response.error) {
+      alert(response.message);
+    } else {
       setDragons(
-        res.sort((a: Dragon, b: Dragon) =>
-          a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+        response.data.sort((a: Dragon, b: Dragon) =>
+          a.name.toLowerCase() > b.name.toLowerCase()
+            ? 1
+            : b.name.toLowerCase() > a.name.toLowerCase()
+            ? -1
+            : 0
         )
       );
-    });
-  }, []);
+    }
+  }, [getDragons, setDragons]);
 
   useEffect(() => {
     updateList();
   }, []);
+
+  const internalDeleteDragon = useCallback(
+    async (id: string) => {
+      const response = await deleteDragon(id);
+
+      if (response.error) {
+        alert(response.error);
+        navigate("/list");
+      } else {
+        updateList();
+      }
+    },
+    [deleteDragon, updateList, navigate]
+  );
 
   return (
     <Grid>
@@ -63,9 +85,7 @@ export function List() {
                   onClick={() =>
                     navigate("/details", { state: { dragonId: dragon.id } })
                   }
-                  onDeleteClick={() =>
-                    deleteDragon(dragon.id!).then(() => updateList())
-                  }
+                  onDeleteClick={() => internalDeleteDragon(dragon.id!)}
                   onEditClick={() => {
                     navigate("/form", { state: { dragonId: dragon.id } });
                   }}

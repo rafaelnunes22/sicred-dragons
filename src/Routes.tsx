@@ -22,7 +22,7 @@ export function Routes() {
             <>
               <Route path="/list" element={<List />} />
               <Route path="/details" element={<Details />} />
-              <Route path="/Form" element={<Form />} />
+              <Route path="/form" element={<Form />} />
             </>
           ) : (
             <Route path="/*" element={<Login />} />

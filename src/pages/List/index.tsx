@@ -56,13 +56,15 @@ export function List() {
     [updateList, navigate]
   );
 
+  const logout = useCallback(() => {
+    userState?.setUser(null);
+    localStorage.clear();
+  }, [userState]);
+
   return (
     <Grid>
       <div className="logout-container">
-        <Button
-          className="logout-button"
-          onClick={() => userState?.setUser(null)}
-        >
+        <Button className="logout-button" onClick={() => logout()}>
           <LogoutIcon className="icon" />
           Sair
         </Button>

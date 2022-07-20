@@ -24,6 +24,7 @@ export function Login() {
     if (response.error) {
       generateTimeoutMessage(response.error, setMessage);
     } else {
+      localStorage.setItem("user", JSON.stringify(response.data!));
       userState?.setUser(response.data!);
       navigate("/list");
     }

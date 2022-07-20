@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Login } from "./pages/Login";
 import { Details } from "./pages/Details";
 import { Form } from "./pages/Form";
@@ -13,6 +13,13 @@ import { UserContext } from "./contexts/UserContext";
 
 export function Routes() {
   const [user, setUser] = useState<User>(null);
+
+  useEffect(() => {
+    const storageUser = localStorage.getItem("user");
+    if (!!storageUser) {
+      setUser(JSON.parse(storageUser));
+    }
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

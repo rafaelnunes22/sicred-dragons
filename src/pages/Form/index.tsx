@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.scss";
 import { Button } from "../../components/Button";
 import { Card } from "../../components/Card";
 import { Grid } from "../../components/Grid";
+import { Input } from "../../components/Input";
 import { Heading } from "../../components/Heading";
 import { ReactComponent as CloseIcon } from "../../icons/close.svg";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Input } from "../../components/Input";
+import { generateTimeoutMessage } from "../../utils/utils";
 import { createDragon, getDragonById, updateDragon } from "../../api";
 
 export function Form() {
@@ -22,32 +23,40 @@ export function Form() {
     const typedState = state as State;
     if (typedState?.dragonId) {
       setDragonId(typedState?.dragonId);
-      getDragonById(typedState.dragonId).then((res) => {
-        setName(res.name);
-        setType(res.type);
-      });
+      const internalGetDragonById = async (id: string) => {
+        const response = await getDragonById(id);
+        if (response.error) {
+          alert(response.error);
+          navigate("/list");
+        } else {
+          setName(response.data.name);
+          setType(response.data.type);
+        }
+      };
+
+      internalGetDragonById(typedState.dragonId);
     }
-  }, []);
+  }, [navigate, state]);
 
   const create = useCallback(async () => {
-    await createDragon({ name, type }).then((res) => {
-      setMessage("Cadastrado com sucesso!");
+    const response = await createDragon({ name, type });
 
-      setTimeout(() => {
-        setMessage(null);
-      }, 5000);
-    });
-  }, [name, type]);
+    if (response.error) {
+      generateTimeoutMessage(response.error, setMessage);
+    } else {
+      generateTimeoutMessage(response.message!, setMessage);
+    }
+  }, [name, type, setMessage]);
 
   const update = useCallback(async () => {
-    await updateDragon({ name, type }, dragonId as string).then((res) => {
-      setMessage("Editado com sucesso!");
+    const response = await updateDragon({ name, type }, dragonId as string);
 
-      setTimeout(() => {
-        setMessage(null);
-      }, 3000);
-    });
-  }, [name, type, dragonId]);
+    if (response.error) {
+      generateTimeoutMessage(response.error, setMessage);
+    } else {
+      generateTimeoutMessage(response.message!, setMessage);
+    }
+  }, [name, type, dragonId, setMessage]);
 
   return (
     <Grid>

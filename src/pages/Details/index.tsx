@@ -20,14 +20,23 @@ export function Details() {
   useEffect(() => {
     const typedState = state as State;
     if (typedState?.dragonId) {
-      getDragonById(typedState.dragonId).then((res: Dragon) => {
-        let date = new Date(res.createdAt as Date);
-        setDragon({ ...res, createdAt: date.toLocaleDateString("pt-BR") });
-      });
-    } else {
-      navigate("/list");
+      const internalGetDragonById = async (id: string) => {
+        const response = await getDragonById(id);
+        if (response.error) {
+          alert(response.error);
+          navigate("/list");
+        } else {
+          let date = new Date(response.data.createdAt as Date);
+          setDragon({
+            ...response.data,
+            createdAt: date.toLocaleDateString("pt-BR"),
+          });
+        }
+      };
+
+      internalGetDragonById(typedState.dragonId);
     }
-  }, []);
+  }, [navigate, state]);
 
   return (
     <Grid>

@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 import { Button } from "../../components/Button";
 import { Card } from "../../components/Card";
 import { Grid } from "../../components/Grid";
 import { Input } from "../../components/Input";
 import { Heading } from "../../components/Heading";
+import { Message } from "../../components/Message";
 import { ReactComponent as CloseIcon } from "../../icons/close.svg";
 import { generateTimeoutMessage } from "../../utils/utils";
 import { createDragon, getDragonById, updateDragon } from "../../api";
-import { Message } from "../../components/Message";
 
 export function Form() {
   const navigate = useNavigate();
@@ -66,12 +66,12 @@ export function Form() {
 
   return (
     <Grid>
-      <div className="container">
-        <Card className="form-card">
+      <div className={styles.container}>
+        <Card className={styles["form-card"]}>
           <Button variant="transparent" onClick={() => navigate("/list")}>
             <CloseIcon />
           </Button>
-          <Heading className="title">
+          <Heading className={styles.title}>
             {dragonId ? "Edite" : "Cadastre"} seu dragão
           </Heading>
           <form

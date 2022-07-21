@@ -1,10 +1,9 @@
-@import "../../global.scss";
-
 .heading {
   font-size: 36px;
   font-weight: 700;
+  text-align: center;
 
-  color: $blue;
+  color: var(--blue);
 
   margin: 0;
 

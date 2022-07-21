@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 import { Button } from "../../components/Button";
 import { Card } from "../../components/Card";
 import { Grid } from "../../components/Grid";
 import { Input } from "../../components/Input";
 import { Heading } from "../../components/Heading";
+import { Message } from "../../components/Message";
 import { ReactComponent as CloseIcon } from "../../icons/close.svg";
 import { generateTimeoutMessage } from "../../utils/utils";
 import { createDragon, getDragonById, updateDragon } from "../../api";
-import { Message } from "../../components/Message";
 
 export function Form() {
   const navigate = useNavigate();
@@ -66,36 +66,20 @@ export function Form() {
 
   return (
     <Grid>
-      <div className="container">
-        <Card className="form-card">
-          <Button
-            variant="transparent"
-            className="icon-button"
-            onClick={() => navigate("/list")}
-          >
-            <CloseIcon className="icon" />
+      <div className={styles.container}>
+        <Card className={styles["form-card"]}>
+          <Button variant="transparent" onClick={() => navigate("/list")}>
+            <CloseIcon />
           </Button>
-          <Heading className="title">
+          <Heading className={styles.title}>
             {dragonId ? "Edite" : "Cadastre"} seu dragão
           </Heading>
-          <Input
-            required
-            placeholder="Nome"
-            className="form-input"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-          <Input
-            placeholder="Tipo"
-            className="form-input"
-            onChange={(e) => setType(e.target.value)}
-            value={type}
-          />
-          <Button
-            className="form-button"
-            onClick={() => {
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
               if (!name || !type) {
                 setMessage("Preencha todos os campos");
+                setError(true);
                 setTimeout(() => {
                   setMessage(null);
                 }, 3000);
@@ -104,8 +88,20 @@ export function Form() {
               }
             }}
           >
-            {dragonId ? "Editar" : "Cadastrar"}
-          </Button>
+            <Input
+              placeholder="Nome"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <Input
+              placeholder="Tipo"
+              onChange={(e) => setType(e.target.value)}
+              value={type}
+            />
+            <Button type="submit" style={{ marginTop: 15 }}>
+              {dragonId ? "Editar" : "Cadastrar"}
+            </Button>
+          </form>
 
           {message ? (
             <Message variant={error ? "error" : "default"}>{message}</Message>

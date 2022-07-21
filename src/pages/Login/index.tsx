@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useState } from "react";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 import { Button } from "../../components/Button";
 import { Grid } from "../../components/Grid";
 import { Heading } from "../../components/Heading";
@@ -33,9 +33,9 @@ export function Login() {
 
   return (
     <Grid>
-      <div className="container">
-        <Card className="login-card">
-          <Heading className="title">Faça seu login</Heading>
+      <div className={styles.container}>
+        <Card className={styles["login-card"]}>
+          <Heading className={styles.title}>Faça seu login</Heading>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -45,7 +45,6 @@ export function Login() {
             <Input
               autoComplete="username"
               placeholder="Digite seu usuário"
-              className="login-input"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
             />
@@ -53,11 +52,10 @@ export function Login() {
               autoComplete="current-password"
               type="password"
               placeholder="Digite sua senha"
-              className="login-input"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <Button type="submit" className="login-button">
+            <Button type="submit" style={{ marginTop: 10 }}>
               Entrar
             </Button>
           </form>

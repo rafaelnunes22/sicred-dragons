@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vh;
+  height: 100vh;
+
+  .form-card {
+    position: relative;
+
+    width: 350px;
+    height: 380px;
+
+    .title {
+      padding: 20px 0;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    width: 100%;
+
+    .form-card {
+      padding: 35px 40px;
+
+      width: 100%;
+      height: 350px;
+    }
+  }
+}

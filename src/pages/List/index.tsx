@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import "./styles.scss";
+import styles from "./styles.module.scss";
 import { ReactComponent as LogoutIcon } from "../../icons/logout.svg";
 
 import { Card } from "../../components/Card";
@@ -64,17 +64,17 @@ export function List() {
 
   return (
     <Grid>
-      <div className="logout-container">
-        <Button className="logout-button" onClick={() => logout()}>
-          <LogoutIcon className="icon" />
+      <div className={styles["logout-container"]}>
+        <Button className={styles["logout-button"]} onClick={() => logout()}>
+          <LogoutIcon />
           Sair
         </Button>
       </div>
-      <Card className="list-card">
-        <div className="header">
+      <Card className={styles["list-card"]}>
+        <div className={styles.header}>
           <Heading>Lista de dragões</Heading>
           <Button
-            className="add-dragon-button"
+            className={styles["add-dragon-button"]}
             onClick={() => navigate("/form")}
           >
             Cadastrar

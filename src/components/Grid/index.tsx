@@ -6,9 +6,9 @@ type Props = {
   children: ReactElement | ReactElement[];
 } & HTMLAttributes<HTMLDivElement>;
 
-export function Grid({ children, className }: Props) {
+export function Grid({ children, className, ...props }: Props) {
   return (
-    <div role="grid" className={cn(className, styles.grid)}>
+    <div role="grid" className={cn(className, styles.grid)} {...props}>
       <div className={styles["grid-item"]}>{children}</div>
     </div>
   );

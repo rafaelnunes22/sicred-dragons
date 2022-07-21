@@ -1,7 +1,8 @@
 import React, { HTMLAttributes } from "react";
+import cn from "clsx";
+import styles from "./styles.module.scss";
 import { Button } from "../Button";
 import { ReactComponent as TrashIcon } from "../../icons/trash.svg";
-import "./styles.scss";
 
 type Props = {
   onEditClick: () => void;
@@ -10,16 +11,16 @@ type Props = {
 } & HTMLAttributes<HTMLButtonElement>;
 
 export function Row({
-  className = "",
+  className,
   title,
   onEditClick,
   onDeleteClick,
   ...props
 }: Props) {
   return (
-    <button className="row" {...props}>
-      <span className="name">{title}</span>
-      <div className="button-container">
+    <button className={cn(className, styles.row)} {...props}>
+      <span className={styles.name}>{title}</span>
+      <div className={styles["button-container"]}>
         <Button
           variant="outlined"
           onClick={(e) => {
@@ -37,7 +38,7 @@ export function Row({
             onDeleteClick();
           }}
         >
-          <TrashIcon className="icon" />
+          <TrashIcon className={styles.icon} />
         </Button>
       </div>
     </button>

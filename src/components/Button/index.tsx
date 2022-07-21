@@ -9,12 +9,12 @@ type Props = {
 export function Button({ variant = "default", className, ...props }: Props) {
   return (
     <button
-      {...props}
       className={cn(className, styles.button, {
         [styles["-default"]]: variant === "default",
         [styles["-outlined"]]: variant === "outlined",
         [styles["-transparent"]]: variant === "transparent",
       })}
+      {...props}
     />
   );
 }

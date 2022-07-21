@@ -60,7 +60,7 @@ export function List() {
     userState?.setUser(null);
     localStorage.clear();
     navigate("/");
-  }, [userState]);
+  }, [userState, navigate]);
 
   return (
     <Grid>

@@ -1,26 +1,27 @@
-@import "../../global.scss";
 .input {
   border: none;
-  border-bottom: 2px solid $blue;
+  border-bottom: 2px solid var(--blue);
 
   &:focus {
     outline: none;
   }
 
-  color: $blue;
+  color: var(--blue);
   background: transparent;
+
+  margin: 15px 0;
 
   padding: 8px 0;
   width: 100%;
 
   &::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: $light-blue;
+    color: var(--light-blue);
     opacity: 1; /* Firefox */
   }
 
   &::-ms-input-placeholder {
     /* Microsoft Edge */
-    color: $light-blue;
+    color: var(--light-blue);
   }
 }

@@ -74,24 +74,12 @@ export function Form() {
           <Heading className="title">
             {dragonId ? "Edite" : "Cadastre"} seu dragão
           </Heading>
-          <Input
-            required
-            placeholder="Nome"
-            className="form-input"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-          <Input
-            placeholder="Tipo"
-            className="form-input"
-            onChange={(e) => setType(e.target.value)}
-            value={type}
-          />
-          <Button
-            style={{ marginTop: 36 }}
-            onClick={() => {
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
               if (!name || !type) {
                 setMessage("Preencha todos os campos");
+                setError(true);
                 setTimeout(() => {
                   setMessage(null);
                 }, 3000);
@@ -100,8 +88,20 @@ export function Form() {
               }
             }}
           >
-            {dragonId ? "Editar" : "Cadastrar"}
-          </Button>
+            <Input
+              placeholder="Nome"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+            <Input
+              placeholder="Tipo"
+              onChange={(e) => setType(e.target.value)}
+              value={type}
+            />
+            <Button type="submit" style={{ marginTop: 15 }}>
+              {dragonId ? "Editar" : "Cadastrar"}
+            </Button>
+          </form>
 
           {message ? (
             <Message variant={error ? "error" : "default"}>{message}</Message>

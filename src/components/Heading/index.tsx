@@ -4,6 +4,10 @@ import styles from "./styles.module.scss";
 
 type Props = HTMLAttributes<HTMLHeadingElement>;
 
-export function Heading({ className, ...props }: Props) {
-  return <h1 className={cn(className, styles.heading)} {...props} />;
+export function Heading({ className, children, ...props }: Props) {
+  return (
+    <h1 className={cn(className, styles.heading)} {...props}>
+      {children}
+    </h1>
+  );
 }

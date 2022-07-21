@@ -45,7 +45,6 @@ export function Login() {
             <Input
               autoComplete="username"
               placeholder="Digite seu usuário"
-              className="login-input"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
             />
@@ -53,11 +52,10 @@ export function Login() {
               autoComplete="current-password"
               type="password"
               placeholder="Digite sua senha"
-              className="login-input"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <Button type="submit" style={{ marginTop: 36 }}>
+            <Button type="submit" style={{ marginTop: 10 }}>
               Entrar
             </Button>
           </form>

@@ -1,14 +1,15 @@
 import { HTMLAttributes, ReactElement } from "react";
-import "./styles.scss";
+import cn from "clsx";
+import styles from "./styles.module.scss";
 
 type Props = {
   children: ReactElement | ReactElement[];
 } & HTMLAttributes<HTMLDivElement>;
 
-export function Grid({ children, className = "" }: Props) {
+export function Grid({ children, className }: Props) {
   return (
-    <div role="grid" className={`grid ${className}`}>
-      <div className="grid-item">{children}</div>
+    <div role="grid" className={cn(className, styles.grid)}>
+      <div className={styles["grid-item"]}>{children}</div>
     </div>
   );
 }

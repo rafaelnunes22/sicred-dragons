@@ -9,12 +9,14 @@ import { Heading } from "../../components/Heading";
 import { ReactComponent as CloseIcon } from "../../icons/close.svg";
 import { generateTimeoutMessage } from "../../utils/utils";
 import { createDragon, getDragonById, updateDragon } from "../../api";
+import { Message } from "../../components/Message";
 
 export function Form() {
   const navigate = useNavigate();
   const [name, setName] = useState<string>("");
   const [type, setType] = useState<string>("");
   const [dragonId, setDragonId] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
 
   const { state } = useLocation();
@@ -42,8 +44,10 @@ export function Form() {
     const response = await createDragon({ name, type });
 
     if (response.error) {
+      setError(true);
       generateTimeoutMessage(response.error, setMessage);
     } else {
+      setError(false);
       generateTimeoutMessage(response.message!, setMessage);
     }
   }, [name, type, setMessage]);
@@ -52,8 +56,10 @@ export function Form() {
     const response = await updateDragon({ name, type }, dragonId as string);
 
     if (response.error) {
+      setError(true);
       generateTimeoutMessage(response.error, setMessage);
     } else {
+      setError(false);
       generateTimeoutMessage(response.message!, setMessage);
     }
   }, [name, type, dragonId, setMessage]);
@@ -65,7 +71,7 @@ export function Form() {
           <Button
             variant="transparent"
             className="icon-button"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/list")}
           >
             <CloseIcon className="icon" />
           </Button>
@@ -101,7 +107,9 @@ export function Form() {
             {dragonId ? "Editar" : "Cadastrar"}
           </Button>
 
-          {message ? <span className="message">{message}</span> : null}
+          {message ? (
+            <Message variant={error ? "error" : "default"}>{message}</Message>
+          ) : null}
         </Card>
       </div>
     </Grid>

@@ -59,6 +59,7 @@ export function List() {
   const logout = useCallback(() => {
     userState?.setUser(null);
     localStorage.clear();
+    navigate("/");
   }, [userState]);
 
   return (

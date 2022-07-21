@@ -10,6 +10,7 @@ import { generateTimeoutMessage } from "../../utils/utils";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api";
+import { Message } from "../../components/Message";
 
 export function Login() {
   const userState = useContext<UserContextType>(UserContext);
@@ -60,8 +61,7 @@ export function Login() {
               Entrar
             </Button>
           </form>
-
-          {message ? <span className="message">{message}</span> : null}
+          {message ? <Message variant="error">{message}</Message> : null}
         </Card>
       </div>
     </Grid>

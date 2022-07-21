@@ -35,6 +35,8 @@ export function Details() {
       };
 
       internalGetDragonById(typedState.dragonId);
+    } else {
+      navigate("/list");
     }
   }, [navigate, state]);
 
@@ -45,7 +47,7 @@ export function Details() {
           <Button
             variant="transparent"
             className="icon-button"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/list")}
           >
             <CloseIcon className="icon" />
           </Button>

@@ -27,7 +27,7 @@ export function Routes() {
         <ReactRouterRoutes>
           {user?.token ? (
             <>
-              <Route path="/list" element={<List />} />
+              <Route path="/*" element={<List />} />
               <Route path="/details" element={<Details />} />
               <Route path="/form" element={<Form />} />
             </>

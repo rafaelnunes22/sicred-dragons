@@ -1,0 +1,8 @@
+.message {
+  color: var(--blue);
+  padding: 20px 0;
+
+  &.-error {
+    color: var(--red);
+  }
+}

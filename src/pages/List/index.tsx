@@ -66,7 +66,7 @@ export function List() {
     <Grid>
       <div className="logout-container">
         <Button className="logout-button" onClick={() => logout()}>
-          <LogoutIcon className="icon" />
+          <LogoutIcon />
           Sair
         </Button>
       </div>

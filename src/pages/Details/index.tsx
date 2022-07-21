@@ -44,12 +44,8 @@ export function Details() {
     <Grid>
       <div className="container">
         <Card className="details-card">
-          <Button
-            variant="transparent"
-            className="icon-button"
-            onClick={() => navigate("/list")}
-          >
-            <CloseIcon className="icon" />
+          <Button variant="transparent" onClick={() => navigate("/list")}>
+            <CloseIcon />
           </Button>
           <Heading className="title">Detalhes do dragão</Heading>
           <h2 className="label">Data de criação:</h2>

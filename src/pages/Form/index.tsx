@@ -68,12 +68,8 @@ export function Form() {
     <Grid>
       <div className="container">
         <Card className="form-card">
-          <Button
-            variant="transparent"
-            className="icon-button"
-            onClick={() => navigate("/list")}
-          >
-            <CloseIcon className="icon" />
+          <Button variant="transparent" onClick={() => navigate("/list")}>
+            <CloseIcon />
           </Button>
           <Heading className="title">
             {dragonId ? "Edite" : "Cadastre"} seu dragão

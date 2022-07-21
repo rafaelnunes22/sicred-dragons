@@ -88,7 +88,7 @@ export function Form() {
             value={type}
           />
           <Button
-            className="form-button"
+            style={{ marginTop: 36 }}
             onClick={() => {
               if (!name || !type) {
                 setMessage("Preencha todos os campos");

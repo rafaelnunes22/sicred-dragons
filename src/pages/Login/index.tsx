@@ -57,7 +57,7 @@ export function Login() {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <Button type="submit" className="login-button">
+            <Button type="submit" style={{ marginTop: 36 }}>
               Entrar
             </Button>
           </form>

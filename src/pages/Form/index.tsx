@@ -77,14 +77,13 @@ export function Form() {
     <Grid>
       <div className={styles.container}>
         <Card className={styles["form-card"]}>
-          <Button variant="transparent" onClick={() => navigate("/list")}>
-            <CloseIcon />
-          </Button>
-
           {loading ? (
             <Loader />
           ) : (
             <>
+              <Button variant="transparent" onClick={() => navigate("/list")}>
+                <CloseIcon />
+              </Button>
               <Heading className={styles.title}>
                 {dragonId ? "Edite" : "Cadastre"} seu dragão
               </Heading>

@@ -43,7 +43,7 @@ export function Details() {
     } else {
       navigate("/list");
     }
-  }, [navigate, state]);
+  }, [navigate, state, setLoading]);
 
   return (
     <Grid>

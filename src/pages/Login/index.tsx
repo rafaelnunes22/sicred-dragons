@@ -12,9 +12,11 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../api";
 import { Message } from "../../components/Message";
 import { Loader } from "../../components/Loader";
+import { useLoading } from "../../contexts/LoadingContext";
 
 export function Login() {
   const { setUser } = useUser();
+  const { loading, setLoading } = useLoading();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState<string>("");
@@ -22,6 +24,7 @@ export function Login() {
   const [message, setMessage] = useState<string | null>(null);
 
   const internalLogin = useCallback(async () => {
+    setLoading(true);
     const response = await login(username, password!);
     if (response.error) {
       generateTimeoutMessage(response.error, setMessage);
@@ -30,38 +33,44 @@ export function Login() {
       setUser(response.data!);
       navigate("/list");
     }
-  }, [username, password, navigate, setUser]);
+    setLoading(false);
+  }, [username, password, navigate, setUser, setLoading]);
 
   return (
     <Grid>
       <div className={styles.container}>
         <Card className={styles["login-card"]}>
-          <Heading className={styles.title}>Faça seu login</Heading>
-          <Loader />
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              internalLogin();
-            }}
-          >
-            <Input
-              autoComplete="username"
-              placeholder="Digite seu usuário"
-              onChange={(e) => setUsername(e.target.value)}
-              value={username}
-            />
-            <Input
-              autoComplete="current-password"
-              type="password"
-              placeholder="Digite sua senha"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            <Button type="submit" style={{ marginTop: 10 }}>
-              Entrar
-            </Button>
-          </form>
-          {message ? <Message variant="error">{message}</Message> : null}
+          {loading ? (
+            <Loader />
+          ) : (
+            <>
+              <Heading className={styles.title}>Faça seu login</Heading>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  internalLogin();
+                }}
+              >
+                <Input
+                  autoComplete="username"
+                  placeholder="Digite seu usuário"
+                  onChange={(e) => setUsername(e.target.value)}
+                  value={username}
+                />
+                <Input
+                  autoComplete="current-password"
+                  type="password"
+                  placeholder="Digite sua senha"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                />
+                <Button type="submit" style={{ marginTop: 10 }}>
+                  Entrar
+                </Button>
+              </form>
+              {message ? <Message variant="error">{message}</Message> : null}
+            </>
+          )}
         </Card>
       </div>
     </Grid>

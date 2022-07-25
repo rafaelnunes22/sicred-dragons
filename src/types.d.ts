@@ -22,5 +22,5 @@ type UserContextType = {
 
 type LoadingContextType = {
   loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>> | null;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };

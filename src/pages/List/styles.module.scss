@@ -20,7 +20,7 @@
 }
 
 .list-card {
-  min-height: 80vh;
+  min-height: 75vh;
   margin: 20px 0px;
 
   .header {
@@ -38,5 +38,6 @@
 
   @media (max-width: 1024px) {
     padding: 16px;
+    min-height: 80vh;
   }
 }

@@ -6,7 +6,7 @@ type Props = {
 
 const LoadingContext = createContext<LoadingContextType>({
   loading: false,
-  setLoading: null,
+  setLoading: () => {},
 });
 
 export function LoadingProvider({ children }: Props) {

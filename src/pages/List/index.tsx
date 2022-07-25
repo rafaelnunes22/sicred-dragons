@@ -11,15 +11,18 @@ import { deleteDragon, getDragons } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { useUser } from "../../contexts/UserContext";
+import { useLoading } from "../../contexts/LoadingContext";
+import { Loader } from "../../components/Loader";
 
 export function List() {
   const [dragons, setDragons] = useState<Dragon[] | null>(null);
 
-  const user = useUser();
-
+  const { setUser } = useUser();
+  const { loading, setLoading } = useLoading();
   const navigate = useNavigate();
 
   const updateList = useCallback(async () => {
+    setLoading(true);
     const response = await getDragons();
 
     if (response.error) {
@@ -35,7 +38,8 @@ export function List() {
         )
       );
     }
-  }, [setDragons]);
+    setLoading(false);
+  }, [setDragons, setLoading]);
 
   useEffect(() => {
     updateList();
@@ -57,10 +61,10 @@ export function List() {
   );
 
   const logout = useCallback(() => {
-    user?.setUser(null);
+    setUser(null);
     localStorage.clear();
     navigate("/");
-  }, [user, navigate]);
+  }, [setUser, navigate]);
 
   return (
     <Grid>
@@ -80,7 +84,8 @@ export function List() {
             Cadastrar
           </Button>
         </div>
-        {dragons
+        {loading ? <Loader /> : null}
+        {dragons && !loading
           ? dragons.map((dragon) => {
               return (
                 <Row

@@ -1,0 +1,46 @@
+.spinner {
+  position: absolute;
+  height: 150px;
+  width: 150px;
+
+  border-top: 15px solid var(--blue);
+  border-right: 15px solid transparent;
+  margin: auto;
+  border-radius: 50%;
+
+  animation: rotate 1s linear infinite;
+
+  .circle {
+    width: 15px;
+    height: 15px;
+    background-color: var(--blue);
+    border-radius: 50px;
+    margin-left: 130px;
+    margin-top: 8.5px;
+  }
+
+  @media (max-width: 1024px) {
+    height: 100px;
+    width: 100px;
+
+    border-top: 10px solid var(--blue);
+    border-right: 10px solid transparent;
+    margin: auto;
+
+    .circle {
+      width: 10px;
+      height: 10px;
+      margin-left: 85px;
+      margin-top: 4px;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

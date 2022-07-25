@@ -1,11 +1,6 @@
 type User = {
-  username: string;
-  token: string;
-} | null;
-
-type UserContextType = {
-  user: User;
-  setUser: React.Dispatch<React.SetStateAction<User>>;
+  username: string | null;
+  token: string | null;
 } | null;
 
 type Dragon = {
@@ -18,4 +13,14 @@ type Dragon = {
 
 type State = {
   dragonId?: string;
+};
+
+type UserContextType = {
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
+} | null;
+
+type LoadingContextType = {
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>> | null;
 };

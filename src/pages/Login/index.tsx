@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./styles.module.scss";
 import { Button } from "../../components/Button";
 import { Grid } from "../../components/Grid";
@@ -7,13 +7,14 @@ import { Input } from "../../components/Input";
 import { Card } from "../../components/Card";
 
 import { generateTimeoutMessage } from "../../utils/utils";
-import { UserContext } from "../../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api";
 import { Message } from "../../components/Message";
+import { Loader } from "../../components/Loader";
 
 export function Login() {
-  const userState = useContext<UserContextType>(UserContext);
+  const { setUser } = useUser();
   const navigate = useNavigate();
 
   const [username, setUsername] = useState<string>("");
@@ -26,16 +27,17 @@ export function Login() {
       generateTimeoutMessage(response.error, setMessage);
     } else {
       localStorage.setItem("user", JSON.stringify(response.data!));
-      userState?.setUser(response.data!);
+      setUser(response.data!);
       navigate("/list");
     }
-  }, [username, password, navigate, userState]);
+  }, [username, password, navigate, setUser]);
 
   return (
     <Grid>
       <div className={styles.container}>
         <Card className={styles["login-card"]}>
           <Heading className={styles.title}>Faça seu login</Heading>
+          <Loader />
           <form
             onSubmit={(e) => {
               e.preventDefault();

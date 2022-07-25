@@ -8,7 +8,7 @@ type Props = {
   onEditClick: () => void;
   onDeleteClick: () => void;
   title: string;
-} & HTMLAttributes<HTMLButtonElement>;
+} & HTMLAttributes<HTMLDivElement>;
 
 export function Row({
   className,
@@ -18,7 +18,7 @@ export function Row({
   ...props
 }: Props) {
   return (
-    <button className={cn(className, styles.row)} {...props}>
+    <div className={cn(className, styles.row)} {...props}>
       <span className={styles.name}>{title}</span>
       <div className={styles["button-container"]}>
         <Button
@@ -41,6 +41,6 @@ export function Row({
           <TrashIcon className={styles.icon} />
         </Button>
       </div>
-    </button>
+    </div>
   );
 }
